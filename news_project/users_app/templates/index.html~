@@ -57,7 +57,6 @@
 <!-- pagination-->
 <table class="tb">
 {% for pag in walk %}
-{% for tg in users_app_post_tag %}
 <tr>
 <td><div class="post">
   {{ pag.post_category| safe}}<br>
@@ -65,9 +64,7 @@
   {{ pag.content| safe}} : at : 
   {{ pag.created| safe}}<br>
   <img src=pag.image | safe><br>
-   {{ tg.tag_id | safe}}
 </div></td></tr>
-{% endfor %}
 {% endfor %}
 <tr><td><div align="center">
  <span>
