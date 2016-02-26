@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor', #ckeditor app Added
     'users_app', #users_app Added
+    'ckeditor_uploader',#ckeditor_uploader Added
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -122,3 +124,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+#Adding More Features For Ckeditor
+CKEDITOR_CONFIGS = {
+    'default':{
+    'toolbar': None,
+    },
+}
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+MEDIA_ROOT='/home/te7a/Desktop/Django_Final_Project/news_project/uploads'
+MEDIA_URL = '/media/'
+

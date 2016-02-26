@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- looping For Each post -->
+{% for post in posts %}
+
+    <!-- showing some of the content -- >
+    {{ post.content  | safe| truncatewords:30 }}
+
+    <!-- getting every tag for the post-->
+    {% for tag in post.tag.all %}
+     <a href="#ok">   {{ tag }} </a>
+        {% endfor %}
+{% endfor %}
+
+</body>
+</html>
