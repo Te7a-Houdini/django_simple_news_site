@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.paginator import Paginator
-from .models import category ,post,tag
+from .models import category ,post,tag,posts_tags
 # Create your views here.
 
 
