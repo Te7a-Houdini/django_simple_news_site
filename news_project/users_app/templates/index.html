@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-<style type="text/css">
+
+    <style type="text/css">
         body{
             font-family: Arial;
             font-size: 16px;
@@ -38,46 +37,40 @@
             padding-left:40px;
 
         }
-
+     a{text-decoration:none}
     </style>
+
 </head>
 <body>
-<!-- looping For Each post -->
-{% for post in posts %}
-
-    <!-- showing some of the content -- >
-    {{ post.content  | safe| truncatewords:30 }}
-
-    <!-- getting every tag for the post-->
-    {% for tag in post.tag.all %}
-     <a href="#ok">   {{ tag }} </a>
-        {% endfor %}
-{% endfor %}
-
-<!-- pagination-->
 <table class="tb">
-{% for pag in walk %}
+
+<! (box) postes renderd from view-->
+{% for pag in box %}
 <tr>
 <td><div class="post">
-  {{ pag.post_category| safe}}<br>
-  {{ pag.title| safe}}<br>
-  {{ pag.content| safe}} : at : 
-  {{ pag.created| safe}}<br>
+<! show attributes of post>
+  {{ pag.post_category}}<br>
+  {{ pag.title}}<br>
+  {{ pag.content}} : at : 
+  {{ pag.created}}<br>
+  <img src=pag.image>
+</div></td>
+</tr>
 
-</div></td></tr>
 {% endfor %}
+<! pagination section>
 <tr><td><div align="center">
  <span>
-    {% if walk.has_previous %}<a href="?page={{  walk.previous_page_number }}">previous</a>{% endif %}
-    <span>Page {{ walk.number }} of {{walk.paginator.num_pages }}.</span>
-     {% if walk.has_next %}<a href="?page={{ walk.next_page_number }}">next</a>{% endif %}
+    {% if box.has_previous %}<a href="?page={{  box.previous_page_number }}">previous</a>{% endif %}
+    <span>Page {{ box.number }} of {{box.paginator.num_pages }}.</span>
+     {% if box.has_next %}<a href="?page={{ box.next_page_number }}">next</a>{% endif %}
  </span>
 </div>
 {{ page.render }}</td></tr>
 <br>
-
 </table>
+
 </body>
-</html><div class="cat">cat1</div><br><br>
-<div class="cat">cat2</div><br><br>
-<div class="cat">cat3</div>
+</html>
+
+
