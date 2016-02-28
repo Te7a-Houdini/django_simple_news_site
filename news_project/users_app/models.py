@@ -15,7 +15,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class tag(models.Model):
 
-    tag_name = models.CharField(max_length=100)
+    tag_name = models.CharField(max_length=100,unique=True)
 
     class Meta:
 
@@ -28,7 +28,7 @@ class tag(models.Model):
 
 class category(models.Model):
 
-    category_name = models.CharField(max_length=100)
+    category_name = models.CharField(max_length=100,unique=True)
 
     class Meta:
         ordering = ('category_name',)
