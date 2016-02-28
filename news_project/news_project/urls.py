@@ -26,6 +26,7 @@ from django.contrib import admin
 
 from django.conf import settings
 from users_app import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
@@ -37,5 +38,13 @@ urlpatterns = [
 	
 	#pplication urls
 	url(r'^users_app/', include('users_app.urls')),
+    # user auth urls
+    url(r'^accounts/login/$', 'auth_app.views.login'),
+    url(r'^accounts/auth/$', 'auth_app.views.auth_view'),
+    url(r'^accounts/logout/$', 'auth_app.views.logout'),
+    url(r'^accounts/loggedin/$', 'auth_app.views.loggedin'),
+    url(r'^accounts/invalid/$', 'auth_app.views.invalid_login'),
+    url(r'^accounts/register/$', 'auth_app.views.register_usr'),
+    url(r'^accounts/register_success/$', 'auth_app.views.register_success')
 
 ]
