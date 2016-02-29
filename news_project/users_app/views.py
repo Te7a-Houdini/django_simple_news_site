@@ -45,4 +45,15 @@ def getpost(request,post_id):
 	selected_post=post.objects.get(id=post_id)
 	return render(request,'posts.html',{"selected_post":selected_post})
 
+def details(request,postn):
 
+        ptag= post.objects.get(id=postn)
+
+	tags= post.objects.get(id=postn).tag.all()
+
+	return render(request,'details.html',{"tags":tags,"ptag":ptag})  
+def postbytag(request,t):
+
+	par=post.objects.raw('select * from users_app_post as a ,users_app_post_tag as b where b.tag_id=%s and a.id=b.post_id',[t])
+
+	return render(request,'postbytag.html',{"par":par})  
