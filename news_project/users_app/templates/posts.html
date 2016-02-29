@@ -67,6 +67,11 @@
   {{ selected_post.post_category }}<br>
   {{ selected_post.content|safe}} at :<br>
   {{ selected_post.created }}</p>
+
+    {% for tag in tags %}
+        <a href={{selected_post.id}}/{{tag.id }}/postbytag>{{ tag }}</a>
+    {% endfor %}
+
 </div>
     <div class="comments_wrapper" id="comments">
 

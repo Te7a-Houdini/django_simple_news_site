@@ -43,7 +43,8 @@ def postcat(request,categoryn):
 
 def getpost(request,post_id):
 	selected_post=post.objects.get(id=post_id)
-	return render(request,'posts.html',{"selected_post":selected_post})
+	tags= post.objects.get(id=post_id).tag.all()
+	return render(request,'posts.html',{"selected_post":selected_post,"tags":tags})
 
 def details(request,postn):
 
