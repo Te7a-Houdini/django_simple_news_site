@@ -37,7 +37,7 @@ urlpatterns = [
 
 	
 	#pplication urls
-	url(r'^users_app/', include('users_app.urls')),
+	url(r'', include('users_app.urls')),
     # user auth urls
     url(r'^accounts/login/$', 'auth_app.views.login'),
     url(r'^accounts/auth/$', 'auth_app.views.auth_view'),

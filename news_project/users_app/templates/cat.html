@@ -1,32 +1,37 @@
+{% extends "base.html" %}
 <html>
 <head>
-    <style type="text/css">
-        #parent{
-            display: flex;
-        }
-     .catg{
-             padding: 20px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            text-align: center;
-            height: 5px;
-            float:left;
-            display:inline;
-            width: 200px;
-            margin:5px;
-        }
-        a{text-decoration:none}
-
-
-    </style>
-
 
 
 </head>
 
 
 <body>
+
+{% block login %}
+          {% if request.user.is_authenticated %}
+       <h4> {{ request.user.username }}</h4>
+
+
+              <a href="../accounts/logout/">logout </a>
+
+          {% else %}
+
+                <a  class="btn btn-success" href="../accounts/login/">Login</a>
+                 <a  class="btn btn-default " href="../accounts/register/">Register</a>
+         {% endif %}
+
+
+
+     {% endblock %}
+
+
+
+
+{% block main_block %}
+
+<br> <br> <br> <br>
+
 <div >
  {%  for cat in testcat %}
 
@@ -36,7 +41,7 @@
 {% for pag in walk %}
       {{ pag.title }}<br>
 {{ pag.post_category}}<br>
-    {{ pag.content|safe|truncatewords_html:20 }} | at :
+    {{ pag.content|safe|truncatewords_html:5 }} | at :
     {{ pag.created }}
         <a href={{ pag.id}}/posts>Read More</a>
 {% endfor %}
@@ -50,5 +55,6 @@
 {{ page.render }}
 
 </div>
+{% endblock %}
 </body>
 </html>

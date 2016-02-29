@@ -1,0 +1,38 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+</head>
+<body>
+
+
+ <div class="navbar  navbar-inverse navbar-fixed-top">
+
+
+        {% block login %}
+        <a   href="../accounts/login/">Login</a>
+        {% endblock %}
+
+</div>
+
+
+
+ <div class="navbar navbar-inverse navbar-fixed-bottom">
+
+
+     <ul class="nav nav-tabs">
+
+</ul>
+     </div>
+
+
+{% block main_block %}
+
+{% endblock %}
+</body>
+</html>

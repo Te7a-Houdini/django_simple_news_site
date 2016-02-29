@@ -1,47 +1,32 @@
+{% extends "base.html" %}
 <!DOCTYPE html>
 <html>
 <head>
 
-    <style type="text/css">
-        body{
-            font-family: Arial;
-            font-size: 16px;
-        }
-        .post{
-            padding: 50px;
-            font-size: 14px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            width: 765px ;
-            height: 100px;
 
-
-            margin-right: auto ;
-        }
-        .cat{
-             padding: 20px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            text-align: center;
-            height: 5px;
-            float:right;
-            display:inline;
-            width: 200px;
-            margin:5px;
-
-        }
-        .tb{
-            float:left;
-            display:inline;
-            padding-left:40px;
-
-        }
-     a{text-decoration:none}
-    </style>
 
 </head>
 <body>
+{% block login %}
+          {% if request.user.is_authenticated %}
+       <h4> {{ request.user.username }}</h4>
+
+
+              <a href="../accounts/logout/">logout </a>
+
+          {% else %}
+
+                <a  class="btn btn-success" href="../accounts/login/">Login</a>
+               <a  class="btn btn-default " href="../accounts/register/">Register</a>
+         {% endif %}
+
+
+
+     {% endblock %}
+
+
+{% block main_block %}
+<br> <br> <br> <br>
 <table class="tb">
 
 <! (box) postes renderd from view-->
@@ -51,10 +36,10 @@
 <! show attributes of post>
     {{ pag.title}}<br>
   {{ pag.post_category}}<br>
-  {{ pag.content|safe|truncatewords_html:20}} : at :
+  {{ pag.content|safe|truncatewords_html:5}} : at :
   {{ pag.created}}<br><br>
 
-    <a href={{pag.id}}/posts>Read More</a>
+    <a href=/{{pag.id}}/posts>Read More</a>
 
 </div></td>
 </tr>
@@ -71,7 +56,7 @@
 {{ page.render }}</td></tr>
 <br>
 </table>
-
+{% endblock %}
 </body>
 </html>
 

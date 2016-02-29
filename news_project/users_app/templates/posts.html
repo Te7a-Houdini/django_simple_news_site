@@ -1,9 +1,32 @@
+{% extends "base.html" %}
 <html>
 <body>
+{% block login %}
+          {% if request.user.is_authenticated %}
+        <h4>{{ request.user.username }}</h4>
+
+
+              <a href="../accounts/logout/">logout </a>
+
+          {% else %}
+
+                <a  class="btn btn-success" href="../accounts/login/">Login</a>
+               <a  class="btn btn-default " href="../accounts/register/">Register</a>
+         {% endif %}
+
+
+
+     {% endblock %}
+
+
+
+
+{% block main_block %}
+    <br> <br> <br>
   {{ selected_post.title }}<br><br>
   {{ selected_post.post_category }}<br>
   {{ selected_post.content|safe}} at :<br>
   {{ selected_post.created }}
-
+{% endblock %}
 </body>
 </html>

@@ -18,7 +18,9 @@ def auth_view(request):
 
     if user is not None:
         auth.login(request,user)
-        return HttpResponseRedirect('/accounts/loggedin')
+
+
+        return HttpResponseRedirect('/main_page',request)
     else:
         return HttpResponseRedirect('/accounts/invalid')
 
@@ -30,7 +32,7 @@ def invalid_login(request):
 
 def logout(request):
     auth.logout(request)
-    return render_to_response('logout.html')
+    return HttpResponseRedirect('/main_page',request)
 
 def register_usr(request):
     if request.method=='POST':
