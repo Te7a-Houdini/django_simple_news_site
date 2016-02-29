@@ -45,31 +45,30 @@
 <table class="tb">
 
 <! (box) postes renderd from view-->
-{% for pag in box %}
-<tr>
+
+
+<tr> {% for ptag in par %}
 <td><div class="post">
 <! show attributes of post>
-    {{ pag.title}}<br>
-  {{ pag.post_category}}<br>
-  {{ pag.content|safe|truncatewords_html:20}} : at :
-  {{ pag.created}}<br><br>
+<br>
+  {{ ptag.title}}<br>
+  {{ ptag.content}} : at : 
+  {{ ptag.created}}<br>
+  {{ ptag.image}}<br>
 
-    <a href={{pag.id}}/posts>Read More</a>
+
+
+
+
+
+
+
 
 </div></td>
 </tr>
+ {% endfor %}
 
-{% endfor %}
-<! pagination section>
-<tr><td><div align="center">
- <span>
-    {% if box.has_previous %}<a href="?page={{  box.previous_page_number }}">previous</a>{% endif %}
-    <span>Page {{ box.number }} of {{box.paginator.num_pages }}.</span>
-     {% if box.has_next %}<a href="?page={{ box.next_page_number }}">next</a>{% endif %}
- </span>
-</div>
-{{ page.render }}</td></tr>
-<br>
+
 </table>
 
 </body>

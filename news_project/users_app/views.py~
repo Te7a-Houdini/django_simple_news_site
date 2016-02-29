@@ -7,16 +7,10 @@ from .models import category ,post,tag
 
 
 
-
-from models import post , tag
-def index (request):
-
-    #posts = post.objects.all()
-
-    #return render (request,'index.html',{'posts':posts })
-
-	testpost= post.objects.all()
-	paginator = Paginator(testpost,5)  #Show 5 posts per page
+def showposts(request):
+	testcat=category.objects.all()
+	pcat= post.objects.all()
+	paginator = Paginator(pcat,5)  #Show 5 posts per page
 	page_num=request.GET.get('page')
 	try:
         	walk = paginator.page(page_num)
@@ -27,5 +21,39 @@ def index (request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         	walk= paginator.page(paginator.num_pages)
 
-	return render(request, 'index.html',{"walk":walk})
+	return render(request, 'cat.html',{"walk":walk,"testcat":testcat})
 
+
+
+def postcat(request,categoryn):
+	pcat= post.objects.filter(post_category_id=categoryn)
+	paginator = Paginator(pcat,5)  #Show 5 posts per page
+	page_num=request.GET.get('page')
+	try:
+        	box = paginator.page(page_num)
+	except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        	box = paginator.page(1)
+	except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        	box= paginator.page(paginator.num_pages)
+
+	return render(request, 'index.html',{"box":box})
+
+
+def getpost(request,post_id):
+	selected_post=post.objects.get(id=post_id)
+	return render(request,'posts.html',{"selected_post":selected_post})
+
+def details(request,postn):
+
+        ptag= post.objects.get(id=postn)
+
+	tags= post.objects.get(id=postn).tag.all()
+
+	return render(request,'details.html',{"tags":tags,"ptag":ptag})  
+def postbytag(request,t):
+	#ptag= post.objects.get(id=t)
+	par=post.objects.raw('select * from users_app_post as a ,users_app_post_tag as b where b.tag_id=%s and a.id=b.post_id',[t])
+	#tags= post.objects.get(id=postn).tag.all()
+	return render(request,'postbytag.html',{"par":par})  
