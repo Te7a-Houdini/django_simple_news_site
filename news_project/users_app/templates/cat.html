@@ -1,7 +1,115 @@
 {% extends "base.html" %}
 <html>
 <head>
+<style>
 
+
+    .bg-1 {
+    display:block;
+    background-color: #cdcdb1; /* Green */
+    color: #ffffff;
+
+
+}
+      .bg-4 {
+    background-color: #2f2f2f;
+    color: #ffffff;
+
+
+}
+     .affix {
+      top: 0;
+      width: 100%;
+
+    background-color: #333;
+    position: fixed;
+
+   padding: 4px;
+
+   z-index: 99999;
+   border-bottom: 2px solid black;
+  }
+
+      .affix + .container-fluid {
+      padding-top: 70px;
+  }
+
+  .decor{
+             padding: 20px;
+            font-size: 18px;
+            border: 1px solid #ddd;
+            text-align: center;
+            height: 5px;
+            float:left;
+            width: 100px;
+            margin:8px;  
+            background-color:#00ffff;
+        }
+         .bg-55 {
+          float : left ;
+
+            top: 160px;
+             position: fixed;
+             margin-right: 50px ;
+      }
+
+      #rbody{
+
+          float : right ;
+
+      }
+      #tablelog{
+          float: right;
+      }
+      nav{
+          padding-top: 20px;
+          padding-bottom: 20px;
+      }
+    .container{
+        float :right;
+        padding-left: 100px;
+            font-size: 14px;
+    }
+    .tttt{
+
+        padding-right:20px;
+
+    }
+      #po1 {
+          display: inline-block;
+          float: left;
+          margin: 10px 50px 10px 50px;
+
+      }
+
+      #po2 {
+          display: inline-block;
+          float: left;
+          margin: 10px 50px 10px 50px;
+      }
+      #po3 {
+          display: inline-block;
+          float: left;
+          margin: 10px 50px 10px 50px;
+      }
+      #po4 {
+          display: inline-block;
+          float: left;
+          margin: 10px 50px 10px 50px;
+      }
+      #po5 {
+          display: inline-block;
+          float: left;
+          margin: 10px 50px 10px 50px;
+      }
+
+      .lab{
+          color:#D0D0D0 ;
+      }
+      body{
+        background-color: #cdcdb1;
+      }
+</style>
 
 </head>
 
@@ -31,30 +139,53 @@
 {% block main_block %}
 
 <br> <br> <br> <br>
+ <div class="container-fluid bg-1 "> <!-- body -->
+          <! categories>
+                 <div class="btn-group-vertical  bg-55">  <!-- sections -->
+                  {%  for cat in testcat %}
+                       <a class="btn btn-info" href="{{cat.id}}/index">{{ cat.category_name }}</a>
+                       {%endfor%}
+                 </div>
 
-<div >
- {%  for cat in testcat %}
 
- <a  class="catg"  href="{{cat.id}}/index">{{ cat.category_name }}</a><br><br><br>
-{% endfor %}
+                <div class="container"> <!-- Posts -->
+                    {% for pag in walk %}       
+                   <h1> {{ pag.title }}</h1>
+                      <p>
+                       {{ pag.post_category}}<br>
+                       {{ pag.content|safe|truncatewords_html:20 }} | at :<br>
+                       {{ pag.created }}<br></p>
+                     <p>
+                        <a class="btn btn-default" href={{ pag.id}}/posts role="button"> Read More &raquo;</a></p>
+                        <hr>
+                        {% endfor %}
+                    </div>
 
-{% for pag in walk %}
-      {{ pag.title }}<br>
-{{ pag.post_category}}<br>
-    {{ pag.content|safe|truncatewords_html:5 }} | at :
-    {{ pag.created }}
-        <a href={{ pag.id}}/posts>Read More</a>
-{% endfor %}
+                </div>    
 
-<span>
-    {% if walk.has_previous %}<a href="?page={{  walk.previous_page_number }}">previous</a>{% endif %}
-    <span>Page {{ walk.number }} of {{walk.paginator.num_pages }}.</span>
-     {% if walk.has_next %}<a href="?page={{ walk.next_page_number }}">next</a>{% endif %}
- </span>
-</div>
-{{ page.render }}
 
-</div>
+        <div id="foot"> <!-- footer -->
+                <footer class="navbar navbar-inverse navbar-fixed-bottom text-center" data-spy="scroll" data-offset-bottom = "197">
+                    <div>
+                        <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+                             <span class="glyphicon glyphicon-chevron-up"></span>
+                        </a><br>
+
+                        <!--<ul class="pager">  -->
+                        <ul class="pagination">
+                        {% if walk.has_previous %}
+                            <li class="previous"><a href="?page={{  walk.previous_page_number }}">Previous</a></li>
+                         {% endif %}
+                         <li><a  href="{{ walk.number }}">{{ walk.number}}</a></li>
+                        {% if walk.has_next %}<li><a href="?page={{ walk.next_page_number }}">next</a></li>{% endif %}
+                         </ul>
+                        </div>
+                       {{ page.render }}
+
+                    </div>
+
+                </footer>
+        </div>
 {% endblock %}
 </body>
 </html>
