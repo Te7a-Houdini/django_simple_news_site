@@ -51,9 +51,12 @@
 <! show attributes of post>
   {{ pag.post_category}}<br>
   {{ pag.title}}<br>
-  {{ pag.content}} : at : 
-  {{ pag.created}}<br>
-  <img src=pag.image>
+
+  {{ pag.content|safe|truncatewords_html:20}} : at :
+  {{ pag.created}}<br><br>
+
+    <a href="#">Read More</a>
+
 </div></td>
 </tr>
 

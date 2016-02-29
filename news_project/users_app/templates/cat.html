@@ -1,6 +1,9 @@
 <html>
 <head>
     <style type="text/css">
+        #parent{
+            display: flex;
+        }
      .catg{
              padding: 20px;
             font-size: 16px;
@@ -29,6 +32,24 @@
 
  <a  class="catg"  href="{{cat.id}}/index">{{ cat.category_name }}</a><br><br><br>
 {% endfor %}
+
+{% for pag in walk %}
+{{ pag.post_category}}<br>
+
+  {{ pag.title }}<br>
+    {{ pag.content|safe|truncatewords_html:20 }} | at :
+    {{ page.created }}
+        <a href="#">Read More</a>
+{% endfor %}
+
+<span>
+    {% if walk.has_previous %}<a href="?page={{  walk.previous_page_number }}">previous</a>{% endif %}
+    <span>Page {{ walk.number }} of {{walk.paginator.num_pages }}.</span>
+     {% if walk.has_next %}<a href="?page={{ walk.next_page_number }}">next</a>{% endif %}
+ </span>
+</div>
+{{ page.render }}
+
 </div>
 </body>
 </html>

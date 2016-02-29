@@ -3,7 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^cat$',views.catt,name='catt'),
+    url(r'^cat$',views.showposts,name='showposts'),
     url(r'^(?P<categoryn>\d+)/index', views.postcat),
 
 ]
