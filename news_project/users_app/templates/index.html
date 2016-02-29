@@ -27,36 +27,80 @@
 
 {% block main_block %}
 <br> <br> <br> <br>
-<table class="tb">
+
+
+        <div class="container-fluid bg-1 "> <!-- body -->
+                 <div>  <!-- sections -->
+                       
+          
+
+                 </div>
+
+            <div id="rbody"> <!-- right body -->
+
+                </div>
+
+                <div class="container"> <!-- Posts -->
+
+
+
+
 
 <! (box) postes renderd from view-->
-{% for pag in box %}
-<tr>
-<td><div class="post">
-<! show attributes of post>
-    {{ pag.title}}<br>
-  {{ pag.post_category}}<br>
-  {{ pag.content|safe|truncatewords_html:5}} : at :
-  {{ pag.created}}<br><br>
+            <div> <!-- Post 2 -->
+                          {% for pag in box %}
+                       <div>
+                           <img id="po2" height="80" width="200" src={{ ptag.image}}/>
+                           <h2>{{ pag.title}}</h2>
 
+         {{ pag.content|safe|truncatewords_html:20}}
+    published:{{ pag.created}}
+          <p><a class="btn btn-default" href=/{{pag.id}}/posts role="button"> View details &raquo;</a></p>
+                        </div>
 
-    <a href=/{{pag.id}}/posts>Read More</a>
-
-</div></td>
-</tr>
-
+<!--<a href=/{{pag.id}}/posts>Read More</a>-->
+<!-- <a class="btn btn-default" href={{pag.id}}/details role="button"> View details &raquo;</a> -->
 {% endfor %}
-<! pagination section>
-<tr><td><div align="center">
- <span>
-    {% if box.has_previous %}<a href="?page={{  box.previous_page_number }}">previous</a>{% endif %}
-    <span>Page {{ box.number }} of {{box.paginator.num_pages }}.</span>
-     {% if box.has_next %}<a href="?page={{ box.next_page_number }}">next</a>{% endif %}
- </span>
+
+
+
 </div>
-{{ page.render }}</td></tr>
-<br>
-</table>
+
+                    
+
+                    
+
+                    
+
+
+
+    </div>
+                </div>
+        </div>
+
+        <div id="foot"> <!-- footer -->
+<footer class="navbar navbar-inverse navbar-fixed-bottom text-center" data-spy="scroll" data-offset-bottom = "197">
+<div>
+<a class="up-arrow" href="‪#‎myPage‬" data-toggle="tooltip" title="TO TOP">
+<span class="glyphicon glyphicon-chevron-up"></span>
+</a><br>
+
+<!--<ul class="pager"> -->
+<ul class="pagination">
+{% if box.has_previous %}
+<li class="previous"><a href="?page={{ box.previous_page_number }}">Previous</a></li>
+{% endif %}
+<li><a href="{{ box.number }}">{{ box.number}}</a></li>
+{% if box.has_next %}<li><a href="?page={{ box.next_page_number }}">next</a></li>{% endif %}
+</ul>
+</div>
+{{ page.render }}
+
+</div>
+
+</footer>
+</div>
+
 {% endblock %}
 </body>
 </html>
