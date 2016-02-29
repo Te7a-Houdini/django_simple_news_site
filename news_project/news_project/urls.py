@@ -45,6 +45,11 @@ urlpatterns = [
     url(r'^accounts/loggedin/$', 'auth_app.views.loggedin'),
     url(r'^accounts/invalid/$', 'auth_app.views.invalid_login'),
     url(r'^accounts/register/$', 'auth_app.views.register_usr'),
-    url(r'^accounts/register_success/$', 'auth_app.views.register_success')
+    url(r'^accounts/register_success/$', 'auth_app.views.register_success'),
+
+    #url of comments
+      url(r'^comments/posted/',views.comment_posted),
+    url(r'^comments/', include('django_comments.urls')),
+
 
 ]

@@ -29,18 +29,23 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+COMMENTS_APP = 'threadedcomments'
+SITE_ID = 1
 
 INSTALLED_APPS = [
     'ckeditor', #ckeditor app Added
     'users_app', #users_app Added
     'ckeditor_uploader',#ckeditor_uploader Added
+    'threadedcomments',#threadedcomments app
+    'django_comments',#comments app
+    'django.contrib.sites', #sites for comment
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auth_app'
+    'auth_app'# authentication app
 ]
 
 MIDDLEWARE_CLASSES = [

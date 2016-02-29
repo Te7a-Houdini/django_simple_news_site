@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.shortcuts import render
-from django.http import HttpResponseRedirect #direct browser to diff url
+from django.http import HttpResponseRedirect,HttpResponse #direct browser to diff url
 from django.contrib import auth #confirm login jobs
 from django.core.context_processors import csrf #cross side request
 from django.contrib.auth.forms import UserCreationForm

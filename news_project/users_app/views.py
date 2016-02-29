@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.paginator import Paginator
 from .models import category ,post,tag
@@ -57,3 +57,8 @@ def postbytag(request,t):
 	par=post.objects.raw('select * from users_app_post as a ,users_app_post_tag as b where b.tag_id=%s and a.id=b.post_id',[t])
 
 	return render(request,'postbytag.html',{"par":par})  
+
+
+def comment_posted (request):
+	#redirect to same page after comment
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
