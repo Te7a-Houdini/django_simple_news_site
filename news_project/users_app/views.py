@@ -39,3 +39,10 @@ def postcat(request,categoryn):
         	box= paginator.page(paginator.num_pages)
 
 	return render(request, 'index.html',{"box":box})
+
+
+def getpost(request,post_id):
+	selected_post=post.objects.get(id=post_id)
+	return render(request,'posts.html',{"selected_post":selected_post})
+
+

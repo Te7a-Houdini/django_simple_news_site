@@ -34,12 +34,11 @@
 {% endfor %}
 
 {% for pag in walk %}
+      {{ pag.title }}<br>
 {{ pag.post_category}}<br>
-
-  {{ pag.title }}<br>
     {{ pag.content|safe|truncatewords_html:20 }} | at :
-    {{ page.created }}
-        <a href="#">Read More</a>
+    {{ pag.created }}
+        <a href={{ pag.id}}/posts>Read More</a>
 {% endfor %}
 
 <span>

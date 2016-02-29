@@ -49,13 +49,12 @@
 <tr>
 <td><div class="post">
 <! show attributes of post>
+    {{ pag.title}}<br>
   {{ pag.post_category}}<br>
-  {{ pag.title}}<br>
-
   {{ pag.content|safe|truncatewords_html:20}} : at :
   {{ pag.created}}<br><br>
 
-    <a href="#">Read More</a>
+    <a href={{pag.id}}/posts>Read More</a>
 
 </div></td>
 </tr>
