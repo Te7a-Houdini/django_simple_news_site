@@ -2,9 +2,16 @@
 {% load threadedcomments_tags %}
 <html>
 <head>
-
-
 </head>
+<style>
+    .container{
+        float :right;
+        padding-left: 100px;
+            font-size: 14px;}
+            body{
+        background-color: #cdcdb1;
+      }
+ </style>
 <body>
 {% block login %}
           {% if request.user.is_authenticated %}
@@ -54,11 +61,13 @@
     </script>
 {% endblock %}
     <br> <br> <br>
-  {{ selected_post.title }}<br><br>
+<div class="container">
+  <h2>{{ selected_post.title }}</h2>
+  <p>
   {{ selected_post.post_category }}<br>
   {{ selected_post.content|safe}} at :<br>
-  {{ selected_post.created }}
-
+  {{ selected_post.created }}</p>
+</div>
     <div class="comments_wrapper" id="comments">
 
         {% render_comment_list   for selected_post  %}
@@ -71,6 +80,14 @@
         </div>
     </div>
 
+
+<div class="navbar navbar-inverse navbar-fixed-bottom">
+
+
+     <ul class="nav nav-tabs">
+
+</ul>
+     </div>
 {% endblock %}
 </body>
 </html>
